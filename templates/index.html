@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #90e0ef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header{
+            display: flex;
+            margin: 20px 2px
+        }
+
+        .heart-image {
+            width: 100px;
+             height: auto;
+            animation: beat 1s infinite ease-in-out;
+            transform-origin: center;
+        }
+        @keyframes beat{
+         0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+        }
+
+        
+        h1 {
+            color: #05668d ;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 1 4px 30px rgba(105, 39, 39, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 4px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #27d46f;
+
+        }
+
+        .error {
+            font-size: 40px;
+            color: rgb(121, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+    <img src="\static\heart.svg" alt="heart-image" class="heart-image">
+
+        <h1>Heart Disease Prediction</h1>
+    
+    </div>
+    
+    <form method="POST">
+    <label>Age:</label>
+    <input type="number" name="age" required>
+
+    <label>Sex (0=female, 1=male):</label>
+    <input type="number" name="sex" min="0" max="1" step="1" required>
+
+    <label>Chest Pain Type (1–4):</label>
+    <input type="number" name="chest pain type" required>
+
+    <label>Resting BP:</label>
+    <input type="number" name="resting bp s" required>
+
+    <label>Cholesterol:</label>
+    <input type="number" name="cholesterol" required>
+
+    <label>Fasting Blood Sugar (0 = <120mg/dL, 1 = >120mg/dL):</label>
+    <input type="number" name="fasting blood sugar" min="0" max="1" step="1" required>
+
+    <label>Resting ECG (0–2):</label>
+    <input type="number" name="resting ecg" required>
+
+    <label>Max Heart Rate:</label>
+    <input type="number" name="max heart rate" required>
+
+    <label>Exercise Angina (0 or 1):</label>
+    <input type="number" name="exercise angina" min="0" max="1" step="1" required>
+
+    <label>Oldpeak:</label>
+    <input type="number" name="oldpeak" step="any" required>
+
+    <label>ST Slope (1–3):</label>
+    <input type="number" name="ST slope" required>
+
+    <button type="submit">Predict</button>
+</form>
+
+
+
+    {% if prediction %}
+        <div class="result">
+            Result: {{ prediction }}
+        </div>
+    {% endif %}
+
+</body>
+</html>
